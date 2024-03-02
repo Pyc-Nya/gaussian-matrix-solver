@@ -1,0 +1,68 @@
+matrix: number[]
+eMatrix: number[]
+mod: "m" | "m**(-1)"
+m: number
+n: number
+memo: int[] | null
+
+userInputAddRow: string
+userInputMultRow: string
+userInputAddColumn: string
+userInputMultColumn: string
+
+type historyObject = {
+	id: number
+	number: number
+	type: string
+	description: string
+	matrix: number[]
+}
+
+history: historyObject[]
+
+function handleM(m: number): void
+function handleN(n: number): void
+
+function mMod(): void
+function mRMod(): void
+
+function addRow(expression: string): void
+function multRow(expression: string): void
+function addColumn(expression: string): void
+function multColumn(expression: string): void
+
+function clear(): void
+function toDefault(): void
+
+function: jumpTo(id: number): void
+
+
+
+App
+--/Toolbar
+--/Matrix
+--/History
+
+Toolbar
+--/MN
+--/RowActions
+--/MatrixActions
+--/Mod
+--/ClearHistory
+
+MN
+--/M
+--/N
+
+RowActions
+--/AddRow
+--/MultRow
+--/SwapRows
+
+MatrixActions
+--/Clear
+--/Memo
+--/ToDefault?
+
+History
+--/HistoryObject
