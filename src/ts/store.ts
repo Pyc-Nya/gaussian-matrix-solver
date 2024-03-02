@@ -276,7 +276,7 @@ export class Store implements IstoreClass {
   }
 
   saveMemo(): void {
-    if (!this.m) {
+    if (!this.m  || !this.n) {
       return;
     }
     console.log('memo saved', toJS(this.matrix));
@@ -306,7 +306,8 @@ export class Store implements IstoreClass {
         matrix: [[]],
         eMatrix: [[]],
         m: this.m,
-        n: this.n
+        n: this.n,
+        mod: this.mod
       }
       this.operationId++;
     })
@@ -322,7 +323,8 @@ export class Store implements IstoreClass {
         matrix: this.matrix.map(innerArray => innerArray.slice()),
         eMatrix: this.eMatrix.map(innerArray => innerArray.slice()),
         m: this.m,
-        n: this.n
+        n: this.n,
+        mod: this.mod
       }
       this.operationId++;
     })
@@ -333,12 +335,14 @@ export class Store implements IstoreClass {
     if (!this.history[id]) {
       return;
     }
+
     runInAction(() => {
       this.saveHistory("jumpTo", '#' + (id + 1).toString());
       this.m = this.history[id]!.m;
       this.n = this.history[id]!.n;
       this.matrix = this.history[id]!.matrix.map(innerArray => innerArray.slice());
       this.eMatrix = this.history[id]!.eMatrix.map(innerArray => innerArray.slice());
+      this.mod = this.history[id]!.mod as "m" | "m**(-1)";
       switch (this.history[id]!.type) {
         case 'addRow':
           this.userInputAddRow = this.history[id]!.description;

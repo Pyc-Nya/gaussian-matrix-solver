@@ -1,7 +1,7 @@
 import { observer } from "mobx-react";
 import store from "../store";
 
-function Matrix({matrix, eMatrix, m, n, disabled}: {matrix: string[][], eMatrix: string[][], m: number, n: number, disabled: boolean}) {
+function Matrix({matrix, eMatrix, m, n, disabled, mod}: {matrix: string[][], eMatrix: string[][], m: number, n: number, disabled: boolean, mod: "m" | "m**(-1)"}) {
   const handleChange = (i: number, j: number, value: string) => {
     store.handleMatrixInput(i, j, value);
   };
@@ -78,7 +78,7 @@ function Matrix({matrix, eMatrix, m, n, disabled}: {matrix: string[][], eMatrix:
           </div>
         ))}
       </div>
-      {store.mod === "m**(-1)" && (
+      {mod === "m**(-1)" && (
         <>
           <div className="matrix-container__sep"></div>
           <div className="matrix">

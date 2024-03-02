@@ -23,7 +23,7 @@ function History() {
           return (
             <div key={entry.id} className="history__entry" onClick={() => {store.jumpTo(entry.id)}}>
               <p className="history__entry-title">#{entry.id + 1} {entry.type}: {entry.description} </p>
-              <Matrix matrix={entry.matrix} eMatrix={entry.eMatrix} m={entry.m} n={entry.n} disabled={true} />
+              <Matrix matrix={entry.matrix} eMatrix={entry.eMatrix} m={entry.m} n={entry.n} disabled={true} mod={entry.mod as "m" | "m**(-1)"} />
             </div>
           )
         })}

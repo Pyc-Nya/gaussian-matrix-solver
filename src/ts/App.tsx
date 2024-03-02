@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="container">
       <div className="container__item"><Toolbar /></div>
-      <div className="container__item"><p className="matrix-title">Matrix</p><Matrix matrix={store.matrix} eMatrix={store.eMatrix} n={store.n} m={store.m} disabled={false} /></div>
+      <div className="container__item"><p className="matrix-title">Matrix</p><Matrix matrix={store.matrix} eMatrix={store.eMatrix} n={store.n} m={store.m} disabled={false} mod={store.mod} /></div>
       <div className="container__item"><History /></div>
     </div>
   );

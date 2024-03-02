@@ -41,6 +41,7 @@ export type ThistoryObject = {
   eMatrix: string[][];
   m: number;
   n: number;
+  mod: string;
 }
 
 export type Thistory = {
