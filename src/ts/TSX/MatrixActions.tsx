@@ -10,13 +10,13 @@ function MatrixActions() {
         <p className="matrix-actions__description">// Clear matrix</p>
       </div>
       <div className="matrix-actions__item">
-        <button className="matrix-actions__button" onClick={store.saveMemo}>Memo {store.memo ? '[1]' : null}</button>
+        <button className="matrix-actions__button" onClick={store.saveMemo}>Memo {store.memo ? '[1]' : '[0]'}</button>
         <p className="matrix-actions__description">// Memorize matrix</p>
       </div>
-      {store.memo && <div className="matrix-actions__item">
-        <button className="matrix-actions__button" onClick={store.toDefault}>To Memorized</button>
+      <div className="matrix-actions__item">
+        <button disabled={!store.memo} className="matrix-actions__button" onClick={store.toDefault}>To Memorized</button>
         <p className="matrix-actions__description">// Return to memorized matrix</p>
-      </div>}
+      </div>
       <div className="matrix-actions__item">
         <button className="matrix-actions__button" onClick={store.clearHistory}>Clear history list</button>
         <p className="matrix-actions__description">// Clear history list  (also clear memory)</p>

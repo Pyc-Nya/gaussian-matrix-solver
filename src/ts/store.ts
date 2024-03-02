@@ -276,6 +276,9 @@ export class Store implements IstoreClass {
   }
 
   saveMemo(): void {
+    if (!this.m) {
+      return;
+    }
     console.log('memo saved', toJS(this.matrix));
     this.memo = this.matrix.map(innerArray => innerArray.slice());
     this.eMemo = this.eMatrix.map(innerArray => innerArray.slice());
