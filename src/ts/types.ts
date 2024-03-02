@@ -6,14 +6,15 @@ export interface IstoreClass {
   m: number;
   n: number;
   memo: string[][] | null;
+  eMemo: string[][] | null;
   userInputAddRow: string;
   userInputMultRow: string;
   userInputSwapRows: string;
+  history: Thistory;
   handleUserInputAddRow(expression: string): void;
   handleUserInputMultRow(expression: string): void;
   handleUserInputSwapRows(expression: string): void;
   handleMatrixInput(i: number, j: number, value: string): void;
-  history: Thistory;
   handleM(m: number): void;
   handleN(n: number): void;
   fillMatrix(): void;

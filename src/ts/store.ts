@@ -10,6 +10,7 @@ export class Store implements IstoreClass {
   m: number;
   n: number;
   memo: string[][] | null;
+  eMemo: string[][] | null;
   userInputAddRow: string;
   userInputMultRow: string;
   userInputSwapRows: string;
@@ -45,6 +46,7 @@ export class Store implements IstoreClass {
     this.m = 0;
     this.n = 0;
     this.memo = null;
+    this.eMemo = null;
     this.userInputAddRow = "";
     this.userInputMultRow = "";
     this.userInputSwapRows = "";
@@ -129,7 +131,9 @@ export class Store implements IstoreClass {
       return;
     }
 
+    console.log('cleared matrix');
     runInAction(() => {
+      this.saveHistory("clear", "");
       const newN = this.mod === 'm**(-1)' ? this.m : this.n;
 
       const newMatrix = Array.from({ length: this.m }, () => 
@@ -268,11 +272,13 @@ export class Store implements IstoreClass {
 
   clearMemo(): void {
     this.memo = null;
+    this.eMemo = null;
   }
 
   saveMemo(): void {
     console.log('memo saved', toJS(this.matrix));
-    this.memo = this.matrix.map(innerArray => innerArray.slice());;
+    this.memo = this.matrix.map(innerArray => innerArray.slice());
+    this.eMemo = this.eMatrix.map(innerArray => innerArray.slice());
   }
 
   toDefault(): void {
@@ -282,7 +288,7 @@ export class Store implements IstoreClass {
 
     console.log('returning to default version of matrix', toJS(this.memo));
     runInAction(() => {
-      this.saveHistory("toDefault", "");
+      this.saveHistory("to Memorized", "");
       this.matrix = this.memo!.map(innerArray => innerArray.slice());
     })
   }

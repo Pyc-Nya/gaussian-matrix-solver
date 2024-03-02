@@ -50,9 +50,8 @@ function Matrix({matrix, eMatrix, m, n, disabled}: {matrix: string[][], eMatrix:
         }
         break;
       default:
-        return; // Если нажата не стрелочка, ничего не делаем
+        return; 
     }
-    // Перемещаем фокус
     const nextInput = document.querySelector(`input[data-row="${nextI}"][data-col="${nextJ}"]`) as HTMLInputElement;
     nextInput?.focus();
   };
@@ -64,15 +63,16 @@ function Matrix({matrix, eMatrix, m, n, disabled}: {matrix: string[][], eMatrix:
           <div key={i} className="matrix__row">
             {Array.from({ length: n }).map((_, j) => (
               <input
-                disabled={disabled}
+                style={disabled ? {cursor: "pointer", pointerEvents: "none"} : {}}
+                onClick={(e: any) => {if (disabled) e.preventDefault()}}
                 className="matrix__cell"
                 key={`${i}-${j}`}
-                data-row={i} // Добавляем атрибуты для идентификации инпута
+                data-row={i}
                 data-col={j}
                 type="text"
                 value={matrix[i]![j]}
                 onChange={(e) => handleChange(i, j, e.target.value)}
-                onKeyDown={(e) => handleKeyDown(e, i, j)} // Обработчик нажатий клавиш
+                onKeyDown={(e) => handleKeyDown(e, i, j)}
               />
             ))}
           </div>
