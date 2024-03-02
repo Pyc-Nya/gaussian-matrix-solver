@@ -118,11 +118,12 @@ h1, h2, h3, h4, h5, h6 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   gap: 1.875em;
 }
 .container__item {
   width: 31.25em;
-  height: 43.75em;
 }
 
 .toolbar {
@@ -226,7 +227,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .history__body {
   overflow-y: scroll;
-  height: 38.75em;
+  height: 46.875em;
 }
 .history__entry {
   cursor: pointer;
@@ -237,6 +238,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 .history__entry:first-child {
   margin-top: 0.625em;
+}
+.history__entry:last-child {
+  border-bottom: none;
 }
 .history__entry:hover {
   background: #eaeaea;
@@ -276,6 +280,7 @@ h1, h2, h3, h4, h5, h6 {
       flex-wrap: wrap;
   gap: 1.25em;
   overflow: auto;
+  max-height: 45.625em;
 }
 .matrix-container__sep {
   width: 0.0625em;
@@ -317,6 +322,6 @@ h1, h2, h3, h4, h5, h6 {
 
 @media screen and (max-width: 37.5em) {
   .container {
-    font-size: 0.4em;
+    font-size: 0.8em;
   }
 }

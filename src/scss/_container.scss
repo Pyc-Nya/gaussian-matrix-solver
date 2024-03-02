@@ -11,11 +11,11 @@
 .container {
   font-family: Consolas, monaco, monospace;
   display: flex;
+  flex-wrap: wrap;
   gap: pxToEm(30px);
 
   &__item {
     width: pxToEm(500px);
-    height: pxToEm(700px);
   }
 }
 
@@ -131,7 +131,7 @@
 
   &__body {
     overflow-y: scroll;
-    height: pxToEm(620px);
+    height: pxToEm(750px);
   }
 
   &__entry {
@@ -143,6 +143,10 @@
 
     &:first-child {
       margin-top: pxToEm(10px);
+    }
+
+    &:last-child {
+      border-bottom: none;
     }
     
     &:hover {
@@ -179,6 +183,7 @@
   flex-wrap: wrap;
   gap: pxToEm(20px);
   overflow: auto;
+  max-height: pxToEm(730px);
 
   &__sep {
     width: pxToEm(1px);
@@ -222,6 +227,6 @@
 
 @media screen and (max-width: pxToEm(600px)) {
   .container {
-    font-size: 0.4em;
+    font-size: 0.8em;
   }
 }
