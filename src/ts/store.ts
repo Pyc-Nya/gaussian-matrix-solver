@@ -350,13 +350,13 @@ export class Store implements IstoreClass {
       this.eMatrix = this.history[id]!.eMatrix.map(innerArray => innerArray.slice());
       this.mod = this.history[id]!.mod as "m" | "m**(-1)";
       switch (this.history[id]!.type) {
-        case 'addRow':
+        case 'Add row':
           this.userInputAddRow = this.history[id]!.description;
           break;
-        case 'multRow':
+        case 'Mult row':
           this.userInputMultRow = this.history[id]!.description;
           break;
-        case 'swap':
+        case 'Swap':
           this.userInputSwapRows = this.history[id]!.description;
           break;
         default:
