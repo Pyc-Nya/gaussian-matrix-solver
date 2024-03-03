@@ -72,6 +72,7 @@ function Matrix({matrix, eMatrix, m, n, disabled, mod}: {matrix: string[][], eMa
                 type="text"
                 value={matrix[i]![j]}
                 onChange={(e) => handleChange(i, j, e.target.value)}
+                onBlur={(e) => {if (e.target.value === '') handleChange(i, j, '0')}}
                 onKeyDown={(e) => handleKeyDown(e, i, j)}
               />
             ))}
