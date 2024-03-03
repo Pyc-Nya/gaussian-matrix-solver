@@ -12,7 +12,7 @@ function validateAddString(input: string, m: number): [number, number, number] |
       return null;
     }
 
-    return [a, c, b * sign];
+    return [a - 1, c - 1, b * sign];
   } else {
     regex = /(\d+(\.\d+)?)\s*([\+\-])\s*(\d+(\.\d+)?)/;
     match = input.match(regex);
@@ -26,7 +26,7 @@ function validateAddString(input: string, m: number): [number, number, number] |
         return null;
       }
 
-      return [a, b, sign];
+      return [a - 1, b - 1, sign];
     }
   }
 
@@ -49,7 +49,7 @@ function validateMultString(input: string): [number, number] | null {
     return null;
   }
 
-  return [a, b];
+  return [a - 1, b];
 }
 
 function roundAndTrim(num: number): number {
@@ -73,7 +73,7 @@ function validateTwoNumbers(input: string, m: number): null | [number, number] {
     const num2 = parseInt(match[2]!, 10);
 
     if (num1 > 0 && num1 <= m && num2 > 0 && num2 <= m) {
-      return [num1, num2];
+      return [num1 - 1, num2 - 1];
     }
   }
 

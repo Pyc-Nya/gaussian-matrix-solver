@@ -5,6 +5,10 @@
 * button {
   &:hover {
     box-shadow: 0 0 pxToEm(5px) #0000003d;
+    &:disabled {
+      box-shadow: none;
+      cursor: default;
+    }
   }
 }
 
@@ -37,6 +41,7 @@
   
   &__input {
     border: pxToEm(1px) solid #000;
+    width: pxToEm(100px);
     
     &:first-child {
       margin-right: pxToEm(10px);
@@ -118,6 +123,10 @@
   border: pxToEm(1px) solid #000;
   border-top: none;
 
+  .matrix-container {
+    justify-content: flex-start;
+  }
+
   &__title {
     display: flex;
     justify-content: center;
@@ -151,6 +160,10 @@
     
     &:hover {
       background: #eaeaea;
+
+      input {
+        background: #eaeaea;
+      }
     }
   }
 
@@ -179,6 +192,7 @@
 
 .matrix-container {
   display: flex;
+  justify-content: center;
   padding: pxToEm(10px);
   flex-wrap: wrap;
   gap: pxToEm(20px);
@@ -227,6 +241,7 @@
 
 @media screen and (max-width: pxToEm(600px)) {
   .container {
+    justify-content: center;
     font-size: 0.8em;
   }
 }

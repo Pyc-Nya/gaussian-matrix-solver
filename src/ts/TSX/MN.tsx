@@ -9,7 +9,8 @@ function MN() {
         type="number" 
         min={0}
         value={store.m} 
-        onChange={(e: any) => store.handleM(+e.target.value)} 
+        onChange={(e: any) => store.handleM(e.target.value)} 
+        onBlur={(e: any) => {if (e.target.value === '') store.handleM(0)}}
         className="mn__input mn__input-m" />
       {store.mod !== 'm**(-1)' && 
       <>
@@ -18,7 +19,8 @@ function MN() {
         type="number" 
         min={0}
         value={store.n} 
-        onChange={(e: any) => store.handleN(+e.target.value)} 
+        onChange={(e: any) => store.handleN(e.target.value)} 
+        onBlur={(e: any) => {if (e.target.value === '') store.handleN(0)}}
         className="mn__input mn__input-n" />
       </>}
     </div>

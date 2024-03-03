@@ -2,6 +2,8 @@ import { makeAutoObservable, runInAction, toJS } from "mobx";
 import { IstoreClass, Thistory } from "./types";
 import { roundAndTrim, validateAddString, validateMatrixRows, validateMultString, validateTwoNumbers } from "./utils";
 
+const MAX_LENGTH = 30;
+
 export class Store implements IstoreClass {
   operationId: number;
   matrix: string[][];
@@ -73,8 +75,12 @@ export class Store implements IstoreClass {
 
   handleM(m: number): void {
     runInAction(() => {
-      this.m = m;
-  
+      this.m = (m < 0) ? 0 : m;
+
+      if (Math.abs(m) > MAX_LENGTH) {
+        this.m = MAX_LENGTH;
+      }
+
       if (this.mod === "m**(-1)") {
         this.n = m;
       }
@@ -84,9 +90,13 @@ export class Store implements IstoreClass {
   }
 
   handleN(n: number): void {
-
     runInAction(() => {
-      this.n = n;
+      this.n = (n < 0) ? 0 : n;
+
+      if (Math.abs(n) > MAX_LENGTH) {
+        this.n = MAX_LENGTH;
+      }
+
       this.fillMatrix();
     })
   }
@@ -133,7 +143,7 @@ export class Store implements IstoreClass {
 
     console.log('cleared matrix');
     runInAction(() => {
-      this.saveHistory("clear", "");
+      this.saveHistory("Clear", "");
       const newN = this.mod === 'm**(-1)' ? this.m : this.n;
 
       const newMatrix = Array.from({ length: this.m }, () => 
@@ -173,11 +183,9 @@ export class Store implements IstoreClass {
         return;
       }
 
-      this.saveHistory("addRow", expression);
+      this.saveHistory("Add row", expression);
   
       let [n1, n2, mult] = validateAddString(expression, this.m)!;
-      n2--;
-      n1--;
   
       const newMatrix = this.matrix.map(innerArray => innerArray.slice());;
   
@@ -212,10 +220,10 @@ export class Store implements IstoreClass {
         return;
       }
 
-      this.saveHistory("multRow", expression);
+      this.saveHistory("Mult row", expression);
   
       let [n, mult] = validateMultString(expression)!;
-      n--;
+
       const newMatrix = this.matrix.map(innerArray => innerArray.slice());;
   
       for (let i = 0; i < this.n; i++) {
@@ -243,11 +251,9 @@ export class Store implements IstoreClass {
         return;
       }
 
-      this.saveHistory("swap", expression);
+      this.saveHistory("Swap", expression);
 
       let [n1, n2] = validateTwoNumbers(expression, this.m)!;
-      n1--;
-      n2--;
 
       const newMatrix = this.matrix.map(innerArray => innerArray.slice());;
       const newEMatrix = this.eMatrix.map(innerArray => innerArray.slice());;
@@ -266,7 +272,7 @@ export class Store implements IstoreClass {
   clearHistory(): void {
     runInAction(() => {
       this.history = [];
-      this.clearMemo();
+      this.operationId = 0;
     })
   }
 
@@ -291,7 +297,7 @@ export class Store implements IstoreClass {
 
     console.log('returning to default version of matrix', toJS(this.memo));
     runInAction(() => {
-      this.saveHistory("to Memorized", "");
+      this.saveHistory("To memorized", "");
       this.matrix = this.memo!.map(innerArray => innerArray.slice());
     })
   }
@@ -337,7 +343,7 @@ export class Store implements IstoreClass {
     }
 
     runInAction(() => {
-      this.saveHistory("jumpTo", '#' + (id + 1).toString());
+      this.saveHistory("Jump to", '#' + (id + 1).toString());
       this.m = this.history[id]!.m;
       this.n = this.history[id]!.n;
       this.matrix = this.history[id]!.matrix.map(innerArray => innerArray.slice());

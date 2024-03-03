@@ -112,6 +112,11 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-box-shadow: 0 0 0.3125em rgba(0, 0, 0, 0.2392156863);
           box-shadow: 0 0 0.3125em rgba(0, 0, 0, 0.2392156863);
 }
+* button:hover:disabled {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  cursor: default;
+}
 
 .container {
   font-family: Consolas, monaco, monospace;
@@ -140,6 +145,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .mn__input {
   border: 0.0625em solid #000;
+  width: 6.25em;
 }
 .mn__input:first-child {
   margin-right: 0.625em;
@@ -209,6 +215,11 @@ h1, h2, h3, h4, h5, h6 {
   border: 0.0625em solid #000;
   border-top: none;
 }
+.history .matrix-container {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
 .history__title {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -245,6 +256,9 @@ h1, h2, h3, h4, h5, h6 {
 .history__entry:hover {
   background: #eaeaea;
 }
+.history__entry:hover input {
+  background: #eaeaea;
+}
 .history__entry-title {
   margin-bottom: 0.625em;
 }
@@ -275,6 +289,9 @@ h1, h2, h3, h4, h5, h6 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   padding: 0.625em;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
@@ -322,6 +339,9 @@ h1, h2, h3, h4, h5, h6 {
 
 @media screen and (max-width: 37.5em) {
   .container {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     font-size: 0.8em;
   }
 }
