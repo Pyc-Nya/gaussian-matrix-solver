@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/gaussian-matrix-solver/static/css/main.3650fbbb.css",
-    "main.js": "/gaussian-matrix-solver/static/js/main.2e8e3bf3.js",
+    "main.css": "/gaussian-matrix-solver/static/css/main.7032ff69.css",
+    "main.js": "/gaussian-matrix-solver/static/js/main.2430c8af.js",
     "index.html": "/gaussian-matrix-solver/index.html",
-    "main.3650fbbb.css.map": "/gaussian-matrix-solver/static/css/main.3650fbbb.css.map",
-    "main.2e8e3bf3.js.map": "/gaussian-matrix-solver/static/js/main.2e8e3bf3.js.map"
+    "main.7032ff69.css.map": "/gaussian-matrix-solver/static/css/main.7032ff69.css.map",
+    "main.2430c8af.js.map": "/gaussian-matrix-solver/static/js/main.2430c8af.js.map"
   },
   "entrypoints": [
-    "static/css/main.3650fbbb.css",
-    "static/js/main.2e8e3bf3.js"
+    "static/css/main.7032ff69.css",
+    "static/js/main.2430c8af.js"
   ]
 }
