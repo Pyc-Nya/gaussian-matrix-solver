@@ -19,28 +19,6 @@ export class Store implements IstoreClass {
   history: Thistory;
 
   constructor() {
-    makeAutoObservable(this);
-
-    this.handleUserInputAddRow = this.handleUserInputAddRow.bind(this);
-    this.handleUserInputMultRow = this.handleUserInputMultRow.bind(this);
-    this.handleUserInputSwapRows = this.handleUserInputSwapRows.bind(this);
-    this.handleMatrixInput = this.handleMatrixInput.bind(this);
-    this.addRow = this.addRow.bind(this);
-    this.clear = this.clear.bind(this);
-    this.mMod = this.mMod.bind(this);
-    this.mRMod = this.mRMod.bind(this);
-    this.clearHistory = this.clearHistory.bind(this);
-    this.clearMemo = this.clearMemo.bind(this);
-    this.fillMatrix = this.fillMatrix.bind(this);
-    this.toDefault = this.toDefault.bind(this);
-    this.handleM = this.handleM.bind(this);
-    this.handleN = this.handleN.bind(this);
-    this.saveMemo = this.saveMemo.bind(this);
-    this.multRow = this.multRow.bind(this);
-    this.saveHistory = this.saveHistory.bind(this);
-    this.saveError = this.saveError.bind(this);
-    this.swap = this.swap.bind(this);
-
     this.operationId = 0;
     this.matrix = [[]];
     this.eMatrix = [[]];
@@ -53,27 +31,29 @@ export class Store implements IstoreClass {
     this.userInputMultRow = "";
     this.userInputSwapRows = "";
     this.history = [];
+
+    makeAutoObservable(this);
   }
 
-  handleUserInputAddRow(expression: string): void {
+  handleUserInputAddRow = (expression: string): void => {
     this.userInputAddRow = expression;
   }
 
-  handleUserInputMultRow(expression: string): void {
+  handleUserInputMultRow = (expression: string): void => {
     this.userInputMultRow = expression;
   }
 
-  handleUserInputSwapRows(expression: string): void {
+  handleUserInputSwapRows = (expression: string): void => {
     this.userInputSwapRows = expression;
   }
 
-  handleMatrixInput(i: number, j: number, value: string): void {
+  handleMatrixInput = (i: number, j: number, value: string): void => {
     runInAction(() => {
       this.matrix[i]![j] = value;
     })
   }
 
-  handleM(m: number): void {
+  handleM = (m: number): void => {
     runInAction(() => {
       this.m = (m < 0) ? 0 : m;
 
@@ -89,7 +69,7 @@ export class Store implements IstoreClass {
     })
   }
 
-  handleN(n: number): void {
+  handleN = (n: number): void => {
     runInAction(() => {
       this.n = (n < 0) ? 0 : n;
 
@@ -101,7 +81,7 @@ export class Store implements IstoreClass {
     })
   }
 
-  fillMatrix(): void {
+  fillMatrix = (): void => {
     runInAction(() => {
       const newN = this.mod === 'm**(-1)' ? this.m : this.n;
     
@@ -136,7 +116,7 @@ export class Store implements IstoreClass {
     });
   }
 
-  clear(): void {
+  clear = (): void => {
     if (!this.m) {
       return;
     }
@@ -157,18 +137,18 @@ export class Store implements IstoreClass {
     })
   }
 
-  mMod(): void {
+  mMod = (): void => {
     this.mod = "m";
   }
 
-  mRMod(): void {
+  mRMod = (): void => {
     runInAction(() => {
       this.mod = "m**(-1)";
       this.handleN(this.m);
     })
   }
 
-  addRow(expression: string): void {
+  addRow = (expression: string): void => {
     console.log('try to add row:', expression)
     runInAction(() => {
       if (!validateMatrixRows(this.matrix)) {
@@ -206,7 +186,7 @@ export class Store implements IstoreClass {
     })
   }
 
-  multRow(expression: string): void {
+  multRow = (expression: string): void => {
     runInAction(() => {
       if (!validateMatrixRows(this.matrix)) {
         console.log('failed to add row because of invalid matrix');
@@ -243,7 +223,7 @@ export class Store implements IstoreClass {
     })
   }
 
-  swap(expression: string): void {
+  swap = (expression: string): void => {
     runInAction(() => {
       if (!validateTwoNumbers(expression, this.m)) {
         console.log('failed to swap rows', expression);
@@ -269,19 +249,19 @@ export class Store implements IstoreClass {
     })
   }
 
-  clearHistory(): void {
+  clearHistory = (): void => {
     runInAction(() => {
       this.history = [];
       this.operationId = 0;
     })
   }
 
-  clearMemo(): void {
+  clearMemo = (): void => {
     this.memo = null;
     this.eMemo = null;
   }
 
-  saveMemo(): void {
+  saveMemo = (): void => {
     if (!this.m  || !this.n) {
       return;
     }
@@ -290,7 +270,7 @@ export class Store implements IstoreClass {
     this.eMemo = this.eMatrix.map(innerArray => innerArray.slice());
   }
 
-  toDefault(): void {
+  toDefault = (): void => {
     if (this.memo === null) {
       return;
     }
@@ -302,7 +282,7 @@ export class Store implements IstoreClass {
     })
   }
 
-  saveError(error: string): void {
+  saveError = (error: string): void => {
     console.log('saving error: ', error);
     runInAction(() => {
       this.history[this.operationId] = {
@@ -319,7 +299,7 @@ export class Store implements IstoreClass {
     })
   }
 
-  saveHistory(type: string, expression: string): void {
+  saveHistory = (type: string, expression: string): void => {
     console.log(`saving history object; id: ${this.operationId}; type: ${type}; expression: ${expression}`)
     runInAction(() => {
       this.history[this.operationId] = {
@@ -336,7 +316,7 @@ export class Store implements IstoreClass {
     })
   }
 
-  jumpTo(id: number): void {
+  jumpTo = (id: number): void => {
     console.log(`jumping to id: ${id}`);
     if (!this.history[id]) {
       return;

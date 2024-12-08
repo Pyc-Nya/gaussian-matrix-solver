@@ -143,12 +143,18 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom: none;
 }
 
+.mn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 0.625em;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
 .mn__input {
   border: 0.0625em solid #000;
   width: 6.25em;
-}
-.mn__input:first-child {
-  margin-right: 0.625em;
 }
 
 .row-actions__item {

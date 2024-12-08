@@ -22,7 +22,8 @@ function MN() {
         onChange={(e: any) => store.handleN(e.target.value)} 
         onBlur={(e: any) => {if (e.target.value === '') store.handleN(0)}}
         className="mn__input mn__input-n" />
-      </>}
+      </>
+      }
     </div>
   )
 }

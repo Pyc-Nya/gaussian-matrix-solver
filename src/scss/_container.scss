@@ -38,14 +38,13 @@
 }
 
 .mn {
+  display: flex;
+  gap: pxToEm(10px);
+  align-items: center;
   
   &__input {
     border: pxToEm(1px) solid #000;
     width: pxToEm(100px);
-    
-    &:first-child {
-      margin-right: pxToEm(10px);
-    }
   }
 }
 
